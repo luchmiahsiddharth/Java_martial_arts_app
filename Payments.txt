@@ -1,0 +1,394 @@
+[
+  {
+    "paymentId": "P001",
+    "classId": "C001",
+    "username": "arahman",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P002",
+    "classId": "C001",
+    "username": "dlim",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P003",
+    "classId": "C001",
+    "username": "pnair",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P004",
+    "classId": "C001",
+    "username": "lpereira",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P005",
+    "classId": "C002",
+    "username": "arahman",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P006",
+    "classId": "C002",
+    "username": "dlim",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P007",
+    "classId": "C002",
+    "username": "lpereira",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P008",
+    "classId": "C003",
+    "username": "dlim",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P009",
+    "classId": "C003",
+    "username": "lpereira",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P010",
+    "classId": "C003",
+    "username": "pnair",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P011",
+    "classId": "C003",
+    "username": "smartinez",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P012",
+    "classId": "C004",
+    "username": "arahman",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P013",
+    "classId": "C004",
+    "username": "smartinez",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P014",
+    "classId": "C004",
+    "username": "ktanaka",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P015",
+    "classId": "C004",
+    "username": "lpereira",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P016",
+    "classId": "C005",
+    "username": "pnair",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P017",
+    "classId": "C005",
+    "username": "dlim",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P018",
+    "classId": "C005",
+    "username": "ktanaka",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P019",
+    "classId": "C005",
+    "username": "fkhan",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P020",
+    "classId": "C006",
+    "username": "arahman",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P021",
+    "classId": "C006",
+    "username": "smartinez",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P022",
+    "classId": "C006",
+    "username": "fkhan",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P023",
+    "classId": "C006",
+    "username": "ewong",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P024",
+    "classId": "C007",
+    "username": "dlim",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P025",
+    "classId": "C007",
+    "username": "ktanaka",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P026",
+    "classId": "C007",
+    "username": "ewong",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P027",
+    "classId": "C007",
+    "username": "pnair",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P028",
+    "classId": "C008",
+    "username": "lpereira",
+    "fee": 28.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P029",
+    "classId": "C008",
+    "username": "fkhan",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P030",
+    "classId": "C008",
+    "username": "ewong",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P031",
+    "classId": "C008",
+    "username": "smartinez",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P032",
+    "classId": "C009",
+    "username": "smartinez",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P033",
+    "classId": "C009",
+    "username": "ktanaka",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P034",
+    "classId": "C009",
+    "username": "fkhan",
+    "fee": 30.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P035",
+    "classId": "C009",
+    "username": "ewong",
+    "fee": 30.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P036",
+    "classId": "C010",
+    "username": "arahman",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P037",
+    "classId": "C010",
+    "username": "ktanaka",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P038",
+    "classId": "C010",
+    "username": "smartinez",
+    "fee": 35.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P039",
+    "classId": "C011",
+    "username": "pnair",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P040",
+    "classId": "C011",
+    "username": "dlim",
+    "fee": 32.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P041",
+    "classId": "C011",
+    "username": "ktanaka",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P042",
+    "classId": "C011",
+    "username": "ewong",
+    "fee": 32.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P043",
+    "classId": "C012",
+    "username": "arahman",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P044",
+    "classId": "C012",
+    "username": "pnair",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P045",
+    "classId": "C012",
+    "username": "smartinez",
+    "fee": 22.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P046",
+    "classId": "C012",
+    "username": "fkhan",
+    "fee": 22.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P047",
+    "classId": "C013",
+    "username": "arahman",
+    "fee": 25.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P048",
+    "classId": "C013",
+    "username": "dlim",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P049",
+    "classId": "C013",
+    "username": "pnair",
+    "fee": 25.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P050",
+    "classId": "C013",
+    "username": "lpereira",
+    "fee": 25.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P051",
+    "classId": "C013",
+    "username": "ewong",
+    "fee": 25.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P052",
+    "classId": "C014",
+    "username": "smartinez",
+    "fee": 30.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P053",
+    "classId": "C014",
+    "username": "ktanaka",
+    "fee": 30.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P054",
+    "classId": "C014",
+    "username": "fkhan",
+    "fee": 30.0,
+    "paymentEffected": false
+  },
+  {
+    "paymentId": "P055",
+    "classId": "C015",
+    "username": "lpereira",
+    "fee": 28.0,
+    "paymentEffected": true
+  },
+  {
+    "paymentId": "P056",
+    "classId": "C015",
+    "username": "ewong",
+    "fee": 28.0,
+    "paymentEffected": false
+  }
+]

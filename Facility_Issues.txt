@@ -1,0 +1,66 @@
+[
+  {
+    "issueId": "I001",
+    "issueTitle": "Leaking ceiling above mat area",
+    "issueDescription": "Water drips onto the main training mats after heavy rain, so the area had to be roped off during the Monday evening classes.",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "status": "pending"
+  },
+  {
+    "issueId": "I002",
+    "issueTitle": "Broken locker doors",
+    "issueDescription": "Three lockers in the changing room no longer lock, so students cannot secure their belongings during class.",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "status": "resolved"
+  },
+  {
+    "issueId": "I003",
+    "issueTitle": "Air conditioning not cooling",
+    "issueDescription": "The hall stays above 30 degrees Celsius during evening classes and the filter looks clogged.",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "status": "pending"
+  },
+  {
+    "issueId": "I004",
+    "issueTitle": "Worn mat seams in Studio 1",
+    "issueDescription": "The seams between the foam mats are splitting and create a tripping hazard during throws.",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "status": "resolved"
+  },
+  {
+    "issueId": "I005",
+    "issueTitle": "Flickering lights in main hall",
+    "issueDescription": "Two ceiling lights flicker through evening classes, which is distracting during sparring.",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "status": "resolved"
+  },
+  {
+    "issueId": "I006",
+    "issueTitle": "Water dispenser out of order",
+    "issueDescription": "The dispenser by the entrance has no water pressure, so students are filling bottles from the bathroom tap.",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "status": "pending"
+  },
+  {
+    "issueId": "I007",
+    "issueTitle": "Rusted heavy bag chain",
+    "issueDescription": "The chain on the second heavy bag is rusted and could snap under load.",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "status": "resolved"
+  },
+  {
+    "issueId": "I008",
+    "issueTitle": "Cracked mirror in Studio 2",
+    "issueDescription": "A large mirror on the back wall has a crack running across it and should be replaced before it breaks.",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "status": "pending"
+  }
+]

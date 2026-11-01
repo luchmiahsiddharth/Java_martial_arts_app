@@ -1,0 +1,146 @@
+[
+  {
+    "classId": "C001",
+    "className": "Karate Beginners",
+    "students": ["arahman", "dlim", "pnair", "lpereira", null, null],
+    "instructor": "jsmith",
+    "fee": 25.0,
+    "date": "2025-09-15",
+    "time": "18:00"
+  },
+  {
+    "classId": "C002",
+    "className": "Kung Fu Forms",
+    "students": ["arahman", "dlim", "lpereira", null, null, null],
+    "instructor": "mtan",
+    "fee": 30.0,
+    "date": "2025-10-08",
+    "time": "19:00"
+  },
+  {
+    "classId": "C003",
+    "className": "Judo Fundamentals",
+    "students": ["dlim", "lpereira", "pnair", "smartinez", null, null],
+    "instructor": "jsmith",
+    "fee": 28.0,
+    "date": "2025-12-01",
+    "time": "18:30"
+  },
+  {
+    "classId": "C004",
+    "className": "Muay Thai Pads",
+    "students": ["arahman", "smartinez", "ktanaka", "lpereira", null, null],
+    "instructor": "mtan",
+    "fee": 35.0,
+    "date": "2026-02-11",
+    "time": "19:30"
+  },
+  {
+    "classId": "C005",
+    "className": "Taekwondo Sparring",
+    "students": ["pnair", "dlim", "ktanaka", "fkhan", null, null],
+    "instructor": "jsmith",
+    "fee": 32.0,
+    "date": "2026-04-13",
+    "time": "18:00"
+  },
+  {
+    "classId": "C006",
+    "className": "Kickboxing Cardio",
+    "students": ["arahman", "smartinez", "fkhan", "ewong", null, null],
+    "instructor": "mtan",
+    "fee": 22.0,
+    "date": "2026-06-08",
+    "time": "19:00"
+  },
+  {
+    "classId": "C007",
+    "className": "Karate Beginners",
+    "students": ["dlim", "ktanaka", "ewong", "pnair", null, null],
+    "instructor": "jsmith",
+    "fee": 25.0,
+    "date": "2026-08-10",
+    "time": "18:00"
+  },
+  {
+    "classId": "C008",
+    "className": "Judo Fundamentals",
+    "students": ["lpereira", "fkhan", "ewong", "smartinez", null, null],
+    "instructor": "jsmith",
+    "fee": 28.0,
+    "date": "2026-09-14",
+    "time": "18:30"
+  },
+  {
+    "classId": "C009",
+    "className": "Kung Fu Forms",
+    "students": ["smartinez", "ktanaka", "fkhan", "ewong", null, null],
+    "instructor": "mtan",
+    "fee": 30.0,
+    "date": "2026-10-07",
+    "time": "19:00"
+  },
+  {
+    "classId": "C010",
+    "className": "Muay Thai Pads",
+    "students": ["arahman", "ktanaka", "smartinez", null, null, null],
+    "instructor": "mtan",
+    "fee": 35.0,
+    "date": "2026-10-14",
+    "time": "19:30"
+  },
+  {
+    "classId": "C011",
+    "className": "Taekwondo Sparring",
+    "students": ["pnair", "dlim", "ktanaka", "ewong", null, null],
+    "instructor": "jsmith",
+    "fee": 32.0,
+    "date": "2026-10-19",
+    "time": "18:00"
+  },
+  {
+    "classId": "C012",
+    "className": "Kickboxing Cardio",
+    "students": ["arahman", "pnair", "smartinez", "fkhan", null, null],
+    "instructor": "mtan",
+    "fee": 22.0,
+    "date": "2026-10-26",
+    "time": "19:00"
+  },
+  {
+    "classId": "C013",
+    "className": "Karate Beginners",
+    "students": ["arahman", "dlim", "pnair", "lpereira", "ewong", null],
+    "instructor": "jsmith",
+    "fee": 25.0,
+    "date": "2026-11-02",
+    "time": "18:00"
+  },
+  {
+    "classId": "C014",
+    "className": "Kung Fu Forms",
+    "students": ["smartinez", "ktanaka", "fkhan", null, null, null],
+    "instructor": "mtan",
+    "fee": 30.0,
+    "date": "2026-11-04",
+    "time": "19:00"
+  },
+  {
+    "classId": "C015",
+    "className": "Judo Fundamentals",
+    "students": ["lpereira", "ewong", null, null, null, null],
+    "instructor": "jsmith",
+    "fee": 28.0,
+    "date": "2026-11-09",
+    "time": "18:30"
+  },
+  {
+    "classId": "C016",
+    "className": "Muay Thai Pads",
+    "students": [null, null, null, null, null, null],
+    "instructor": "mtan",
+    "fee": 35.0,
+    "date": "2026-11-11",
+    "time": "19:30"
+  }
+]

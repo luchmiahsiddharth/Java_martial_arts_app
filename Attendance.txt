@@ -1,0 +1,254 @@
+[
+  {
+    "classId": "C001",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "attendance": "present"
+  },
+  {
+    "classId": "C001",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "present"
+  },
+  {
+    "classId": "C001",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C001",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "attendance": "present"
+  },
+  {
+    "classId": "C002",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "attendance": "present"
+  },
+  {
+    "classId": "C002",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "present"
+  },
+  {
+    "classId": "C002",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "attendance": "present"
+  },
+  {
+    "classId": "C003",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C003",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "attendance": "present"
+  },
+  {
+    "classId": "C003",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "attendance": "present"
+  },
+  {
+    "classId": "C003",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "present"
+  },
+  {
+    "classId": "C004",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "attendance": "present"
+  },
+  {
+    "classId": "C004",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "present"
+  },
+  {
+    "classId": "C004",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C004",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "attendance": "present"
+  },
+  {
+    "classId": "C005",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "attendance": "present"
+  },
+  {
+    "classId": "C005",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "present"
+  },
+  {
+    "classId": "C005",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "present"
+  },
+  {
+    "classId": "C005",
+    "firstName": "Fatima",
+    "lastName": "Khan",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C006",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "attendance": "present"
+  },
+  {
+    "classId": "C006",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "present"
+  },
+  {
+    "classId": "C006",
+    "firstName": "Fatima",
+    "lastName": "Khan",
+    "attendance": "present"
+  },
+  {
+    "classId": "C006",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C007",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "present"
+  },
+  {
+    "classId": "C007",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "present"
+  },
+  {
+    "classId": "C007",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "attendance": "present"
+  },
+  {
+    "classId": "C007",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "attendance": "present"
+  },
+  {
+    "classId": "C008",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "attendance": "present"
+  },
+  {
+    "classId": "C008",
+    "firstName": "Fatima",
+    "lastName": "Khan",
+    "attendance": "present"
+  },
+  {
+    "classId": "C008",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "attendance": "present"
+  },
+  {
+    "classId": "C008",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C009",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "present"
+  },
+  {
+    "classId": "C009",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "present"
+  },
+  {
+    "classId": "C009",
+    "firstName": "Fatima",
+    "lastName": "Khan",
+    "attendance": "present"
+  },
+  {
+    "classId": "C009",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C010",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "attendance": "absent"
+  },
+  {
+    "classId": "C010",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "present"
+  },
+  {
+    "classId": "C010",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "attendance": "present"
+  },
+  {
+    "classId": "C011",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "attendance": "present"
+  },
+  {
+    "classId": "C011",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "attendance": "present"
+  },
+  {
+    "classId": "C011",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "attendance": "present"
+  },
+  {
+    "classId": "C011",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "attendance": "present"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "ratingId": "R001",
+    "classId": "C001",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 5,
+    "studentFirstName": "Aisha"
+  },
+  {
+    "ratingId": "R002",
+    "classId": "C001",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 4,
+    "studentFirstName": "Daniel"
+  },
+  {
+    "ratingId": "R003",
+    "classId": "C002",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 4,
+    "studentFirstName": "Aisha"
+  },
+  {
+    "ratingId": "R004",
+    "classId": "C002",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 5,
+    "studentFirstName": "Lucas"
+  },
+  {
+    "ratingId": "R005",
+    "classId": "C003",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 4,
+    "studentFirstName": "Lucas"
+  },
+  {
+    "ratingId": "R006",
+    "classId": "C003",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 5,
+    "studentFirstName": "Sofia"
+  },
+  {
+    "ratingId": "R007",
+    "classId": "C004",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 5,
+    "studentFirstName": "Aisha"
+  },
+  {
+    "ratingId": "R008",
+    "classId": "C004",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 4,
+    "studentFirstName": "Sofia"
+  },
+  {
+    "ratingId": "R009",
+    "classId": "C005",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 4,
+    "studentFirstName": "Priya"
+  },
+  {
+    "ratingId": "R010",
+    "classId": "C005",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 3,
+    "studentFirstName": "Kenji"
+  },
+  {
+    "ratingId": "R011",
+    "classId": "C006",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 5,
+    "studentFirstName": "Fatima"
+  },
+  {
+    "ratingId": "R012",
+    "classId": "C006",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 4,
+    "studentFirstName": "Sofia"
+  },
+  {
+    "ratingId": "R013",
+    "classId": "C007",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 4,
+    "studentFirstName": "Daniel"
+  },
+  {
+    "ratingId": "R014",
+    "classId": "C007",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 3,
+    "studentFirstName": "Ethan"
+  },
+  {
+    "ratingId": "R015",
+    "classId": "C008",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 5,
+    "studentFirstName": "Lucas"
+  },
+  {
+    "ratingId": "R016",
+    "classId": "C008",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 4,
+    "studentFirstName": "Fatima"
+  },
+  {
+    "ratingId": "R017",
+    "classId": "C009",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 5,
+    "studentFirstName": "Kenji"
+  },
+  {
+    "ratingId": "R018",
+    "classId": "C009",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 4,
+    "studentFirstName": "Sofia"
+  },
+  {
+    "ratingId": "R019",
+    "classId": "C010",
+    "instructorFirstName": "Mei",
+    "instructorLastName": "Tan",
+    "rating": 4,
+    "studentFirstName": "Kenji"
+  },
+  {
+    "ratingId": "R020",
+    "classId": "C011",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 3,
+    "studentFirstName": "Priya"
+  },
+  {
+    "ratingId": "R021",
+    "classId": "C011",
+    "instructorFirstName": "John",
+    "instructorLastName": "Smith",
+    "rating": 2,
+    "studentFirstName": "Ethan"
+  }
+]

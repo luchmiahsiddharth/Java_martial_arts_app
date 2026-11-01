@@ -1,0 +1,74 @@
+[
+  {
+    "equipmentId": "E001",
+    "equipmentName": "Karate Gi",
+    "quantity": 20,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E002",
+    "equipmentName": "Judo Gi",
+    "quantity": 15,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E003",
+    "equipmentName": "Taekwondo Dobok",
+    "quantity": 12,
+    "condition": "fair"
+  },
+  {
+    "equipmentId": "E004",
+    "equipmentName": "Boxing Gloves (pair)",
+    "quantity": 16,
+    "condition": "fair"
+  },
+  {
+    "equipmentId": "E005",
+    "equipmentName": "Muay Thai Pads (pair)",
+    "quantity": 8,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E006",
+    "equipmentName": "Heavy Bag",
+    "quantity": 4,
+    "condition": "poor"
+  },
+  {
+    "equipmentId": "E007",
+    "equipmentName": "Foam Sparring Mat",
+    "quantity": 24,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E008",
+    "equipmentName": "Shin Guards (pair)",
+    "quantity": 14,
+    "condition": "fair"
+  },
+  {
+    "equipmentId": "E009",
+    "equipmentName": "Protective Headgear",
+    "quantity": 12,
+    "condition": "new"
+  },
+  {
+    "equipmentId": "E010",
+    "equipmentName": "Training Staff",
+    "quantity": 6,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E011",
+    "equipmentName": "Focus Mitts (pair)",
+    "quantity": 10,
+    "condition": "good"
+  },
+  {
+    "equipmentId": "E012",
+    "equipmentName": "Kicking Shield",
+    "quantity": 6,
+    "condition": "fair"
+  }
+]

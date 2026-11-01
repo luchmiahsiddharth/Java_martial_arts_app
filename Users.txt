@@ -1,0 +1,182 @@
+[
+  {
+    "username": "jsmith",
+    "firstName": "John",
+    "lastName": "Smith",
+    "dateJoined": "2024-09-01",
+    "email": "john.smith@example.com",
+    "birthDate": "1985-03-14",
+    "loginPassword": "pass123",
+    "role": "Instructor"
+  },
+  {
+    "username": "mtan",
+    "firstName": "Mei",
+    "lastName": "Tan",
+    "dateJoined": "2025-01-20",
+    "email": "mei.tan@example.com",
+    "birthDate": "1990-07-02",
+    "loginPassword": "secret456",
+    "role": "Instructor"
+  },
+  {
+    "username": "gokafor",
+    "firstName": "Grace",
+    "lastName": "Okafor",
+    "dateJoined": "2023-06-01",
+    "email": "grace.okafor@example.com",
+    "birthDate": "1980-02-11",
+    "loginPassword": "grace2023",
+    "role": "Manager"
+  },
+  {
+    "username": "rpatel",
+    "firstName": "Raj",
+    "lastName": "Patel",
+    "dateJoined": "2023-09-18",
+    "email": "raj.patel@example.com",
+    "birthDate": "1978-10-05",
+    "loginPassword": "raj2023",
+    "role": "Manager"
+  },
+  {
+    "username": "hbrooks",
+    "firstName": "Hannah",
+    "lastName": "Brooks",
+    "dateJoined": "2024-02-12",
+    "email": "hannah.brooks@example.com",
+    "birthDate": "1988-08-23",
+    "loginPassword": "hannah2024",
+    "role": "Administrator"
+  },
+  {
+    "username": "ohaddad",
+    "firstName": "Omar",
+    "lastName": "Haddad",
+    "dateJoined": "2024-05-06",
+    "email": "omar.haddad@example.com",
+    "birthDate": "1991-03-09",
+    "loginPassword": "omar2024",
+    "role": "Administrator"
+  },
+  {
+    "username": "vsantos",
+    "firstName": "Victor",
+    "lastName": "Santos",
+    "dateJoined": "2024-03-04",
+    "email": "victor.santos@example.com",
+    "birthDate": "1987-06-30",
+    "loginPassword": "victor2024",
+    "role": "Facilities officer"
+  },
+  {
+    "username": "lchen",
+    "firstName": "Linda",
+    "lastName": "Chen",
+    "dateJoined": "2025-04-14",
+    "email": "linda.chen@example.com",
+    "birthDate": "1993-12-17",
+    "loginPassword": "linda2025",
+    "role": "Facilities officer"
+  },
+  {
+    "username": "nfischer",
+    "firstName": "Naomi",
+    "lastName": "Fischer",
+    "dateJoined": "2024-07-22",
+    "email": "naomi.fischer@example.com",
+    "birthDate": "1989-01-26",
+    "loginPassword": "naomi2024",
+    "role": "Attendance officer"
+  },
+  {
+    "username": "sadeyemi",
+    "firstName": "Samuel",
+    "lastName": "Adeyemi",
+    "dateJoined": "2025-09-01",
+    "email": "samuel.adeyemi@example.com",
+    "birthDate": "1995-04-12",
+    "loginPassword": "samuel2025",
+    "role": "Attendance officer"
+  },
+  {
+    "username": "arahman",
+    "firstName": "Aisha",
+    "lastName": "Rahman",
+    "dateJoined": "2025-02-10",
+    "email": "aisha.rahman@example.com",
+    "birthDate": "1998-05-21",
+    "loginPassword": "aisha2025",
+    "role": "Student"
+  },
+  {
+    "username": "dlim",
+    "firstName": "Daniel",
+    "lastName": "Lim",
+    "dateJoined": "2025-03-03",
+    "email": "daniel.lim@example.com",
+    "birthDate": "1996-11-08",
+    "loginPassword": "daniel2025",
+    "role": "Student"
+  },
+  {
+    "username": "pnair",
+    "firstName": "Priya",
+    "lastName": "Nair",
+    "dateJoined": "2025-06-15",
+    "email": "priya.nair@example.com",
+    "birthDate": "2000-01-30",
+    "loginPassword": "priya2025",
+    "role": "Student"
+  },
+  {
+    "username": "lpereira",
+    "firstName": "Lucas",
+    "lastName": "Pereira",
+    "dateJoined": "2025-08-04",
+    "email": "lucas.pereira@example.com",
+    "birthDate": "1994-09-17",
+    "loginPassword": "lucas2025",
+    "role": "Student"
+  },
+  {
+    "username": "smartinez",
+    "firstName": "Sofia",
+    "lastName": "Martinez",
+    "dateJoined": "2025-11-12",
+    "email": "sofia.martinez@example.com",
+    "birthDate": "1999-04-25",
+    "loginPassword": "sofia2025",
+    "role": "Student"
+  },
+  {
+    "username": "ktanaka",
+    "firstName": "Kenji",
+    "lastName": "Tanaka",
+    "dateJoined": "2026-01-19",
+    "email": "kenji.tanaka@example.com",
+    "birthDate": "1992-12-03",
+    "loginPassword": "kenji2026",
+    "role": "Student"
+  },
+  {
+    "username": "fkhan",
+    "firstName": "Fatima",
+    "lastName": "Khan",
+    "dateJoined": "2026-03-09",
+    "email": "fatima.khan@example.com",
+    "birthDate": "2001-07-14",
+    "loginPassword": "fatima2026",
+    "role": "Student"
+  },
+  {
+    "username": "ewong",
+    "firstName": "Ethan",
+    "lastName": "Wong",
+    "dateJoined": "2026-05-25",
+    "email": "ethan.wong@example.com",
+    "birthDate": "1997-02-19",
+    "loginPassword": "ethan2026",
+    "role": "Student"
+  }
+]
