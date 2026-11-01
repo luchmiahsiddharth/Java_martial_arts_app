@@ -26,7 +26,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginPage.class.getName());
 
-    private static final String USERS_FILE = "users.txt";
+    private static final String USERS_FILE = "Users.txt";
 
     private static final Gson GSON = new Gson();
 
