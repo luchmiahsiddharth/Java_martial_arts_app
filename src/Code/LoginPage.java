@@ -90,9 +90,9 @@ public class LoginPage extends javax.swing.JFrame {
             // case "Administrator":
             //     return GSON.fromJson(record, Administrator.class);
             // case "Attendance_officer":
-            //     return GSON.fromJson(record, Attendance officer.class);
+            //     return GSON.fromJson(record, Attendance_officer.class);
             // case "Facilities_officer":
-            //     return GSON.fromJson(record, Facilities officer.class);
+            //     return GSON.fromJson(record, Facilities_officer.class);
 
                   
             default:

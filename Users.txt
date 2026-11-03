@@ -67,7 +67,7 @@
     "email": "victor.santos@example.com",
     "birthDate": "1987-06-30",
     "loginPassword": "victor2024",
-    "role": "Facilities officer"
+    "role": "Facilities_officer"
   },
   {
     "username": "lchen",
@@ -77,7 +77,7 @@
     "email": "linda.chen@example.com",
     "birthDate": "1993-12-17",
     "loginPassword": "linda2025",
-    "role": "Facilities officer"
+    "role": "Facilities_officer"
   },
   {
     "username": "nfischer",
@@ -87,7 +87,7 @@
     "email": "naomi.fischer@example.com",
     "birthDate": "1989-01-26",
     "loginPassword": "naomi2024",
-    "role": "Attendance officer"
+    "role": "Attendance_officer"
   },
   {
     "username": "sadeyemi",
@@ -97,7 +97,7 @@
     "email": "samuel.adeyemi@example.com",
     "birthDate": "1995-04-12",
     "loginPassword": "samuel2025",
-    "role": "Attendance officer"
+    "role": "Attendance_officer"
   },
   {
     "username": "arahman",

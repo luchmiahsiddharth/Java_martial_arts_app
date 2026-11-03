@@ -10,8 +10,4 @@ public class Instructor extends User{
         String[] args = null;
         InstructorDashboard.main(args);
     }
-  
-    protected void manageClasses(){
-        System.out.println("herllo");
-    }
 }
