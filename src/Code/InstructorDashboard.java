@@ -11,15 +11,20 @@ package Code;
 public class InstructorDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InstructorDashboard.class.getName());
-
+    
+    Instructor currentInstructor = (Instructor) LoginPage.getCurrentUser();
     /**
      * Creates new form InstructorDashboard
      */
+
+    
     public InstructorDashboard() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
+        welcomelbl.setText("welcome, " + currentInstructor.getFirstName() +" "+ currentInstructor.getLastName());
+        
         
     }
 
@@ -32,31 +37,31 @@ public class InstructorDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        welcomelbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1200));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("yoohoo this is my dashboard!");
+        welcomelbl.setFont(new java.awt.Font("Segoe UI Semibold", 3, 48)); // NOI18N
+        welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
+        welcomelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomelbl.setText("welcome");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(665, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(401, 401, 401))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(welcomelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1049, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(352, 352, 352)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(welcomelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(834, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,6 +93,6 @@ public class InstructorDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }

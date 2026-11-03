@@ -47,19 +47,19 @@ public class LandingPage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 180, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 180, 50));
 
         loginbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         loginbtn.setText("Login");
         loginbtn.setBorder(null);
         loginbtn.setBorderPainted(false);
         loginbtn.addActionListener(this::loginbtnActionPerformed);
-        getContentPane().add(loginbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 180, 50));
+        getContentPane().add(loginbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 180, 50));
 
-        paragraphlbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        paragraphlbl.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         paragraphlbl.setForeground(new java.awt.Color(255, 255, 255));
-        paragraphlbl.setText("<html>this is a placeholder paragraph<br> for the dodo name formatted<br>in HTML.");
-        getContentPane().add(paragraphlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 340, 110));
+        paragraphlbl.setText("<html>lorem ipsum dolor sit amet consectetur adipiscing elit dolorem enim<br> deserunt libero molestias expedita placeat ut culpa nihil commodo <br>qui et mollitia aut commodo illum magna omnis est aliqua <br>\net aute amet mollit labore ducimus deleniti<br> consequatur cupidatat atque odio facilis commodo <br>\n");
+        getContentPane().add(paragraphlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 460, 130));
 
         headerlbl.setFont(new java.awt.Font("Segoe UI Semibold", 1, 48)); // NOI18N
         headerlbl.setForeground(new java.awt.Color(255, 255, 255));

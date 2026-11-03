@@ -31,7 +31,7 @@ public class LoginPage extends javax.swing.JFrame {
     private static final Gson GSON = new Gson();
 
     // Declared as User, but holds a subclass such as Instructor (polymorphism).
-    private static User currentUser;
+    public static User currentUser;
 
     public static User getCurrentUser() {
         return currentUser;
@@ -85,6 +85,16 @@ public class LoginPage extends javax.swing.JFrame {
                 return GSON.fromJson(record, Instructor.class);
             // case "Student":
             //     return GSON.fromJson(record, Student.class);
+            // case "Manager":
+            //     return GSON.fromJson(record, Manager.class);
+            // case "Administrator":
+            //     return GSON.fromJson(record, Administrator.class);
+            // case "Attendance_officer":
+            //     return GSON.fromJson(record, Attendance officer.class);
+            // case "Facilities_officer":
+            //     return GSON.fromJson(record, Facilities officer.class);
+
+                  
             default:
                 throw new IllegalArgumentException("Unknown role: " + role);
         }
@@ -136,12 +146,14 @@ public class LoginPage extends javax.swing.JFrame {
         passwordlbl = new javax.swing.JLabel();
         usernametxtfld = new javax.swing.JTextField();
         passwordtxtfld = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
         loginiconlbl = new javax.swing.JLabel();
         clearbtn = new javax.swing.JButton();
         enterbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 2, 0));
+        setSize(new java.awt.Dimension(377, 610));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logintitlelbl.setFont(new java.awt.Font("Segoe UI Semibold", 3, 48)); // NOI18N
@@ -164,8 +176,14 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(usernametxtfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 330, 30));
         getContentPane().add(passwordtxtfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 330, 30));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("\"cool logo here\"");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 310, 40));
+
         loginiconlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
-        getContentPane().add(loginiconlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 120, 70));
+        getContentPane().add(loginiconlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 340, 80));
 
         clearbtn.setText("Clear");
         clearbtn.addActionListener(this::clearbtnActionPerformed);
@@ -218,6 +236,7 @@ public class LoginPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearbtn;
     private javax.swing.JButton enterbtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel loginiconlbl;
     private javax.swing.JLabel logintitlelbl;
     private javax.swing.JLabel passwordlbl;

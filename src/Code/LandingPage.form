@@ -47,7 +47,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="460" width="180" height="50"/>
+          <AbsoluteConstraints x="20" y="470" width="180" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -67,23 +67,23 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="460" width="180" height="50"/>
+          <AbsoluteConstraints x="20" y="470" width="180" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="paragraphlbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="24" style="0"/>
+          <Font name="Segoe UI Semibold" size="14" style="2"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;this is a placeholder paragraph&lt;br&gt; for the dodo name formatted&lt;br&gt;in HTML."/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;lorem ipsum dolor sit amet consectetur adipiscing elit dolorem enim&lt;br&gt; deserunt libero molestias expedita placeat ut culpa nihil commodo &lt;br&gt;qui et mollitia aut commodo illum magna omnis est aliqua &lt;br&gt;&#xa;et aute amet mollit labore ducimus deleniti&lt;br&gt; consequatur cupidatat atque odio facilis commodo &lt;br&gt;&#xa;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="340" width="340" height="110"/>
+          <AbsoluteConstraints x="20" y="340" width="460" height="130"/>
         </Constraint>
       </Constraints>
     </Component>
