@@ -11,4 +11,7 @@ public class Instructor extends User{
         InstructorDashboard.main(args);
     }
   
+    protected void manageClasses(){
+        System.out.println("herllo");
+    }
 }

@@ -24,8 +24,7 @@ public class InstructorDashboard extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
         welcomelbl.setText("welcome, " + currentInstructor.getFirstName() +" "+ currentInstructor.getLastName());
-        
-        
+       
     }
 
     /**
@@ -38,31 +37,78 @@ public class InstructorDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         welcomelbl = new javax.swing.JLabel();
+        bannerlbl = new javax.swing.JLabel();
+        classmanagerbannerlbl = new javax.swing.JLabel();
+        facilityissuesbannerlbl = new javax.swing.JLabel();
+        ratingsbannerlbl = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 50), new java.awt.Dimension(0, 50), new java.awt.Dimension(32767, 50));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 32767));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 32767));
+        classmanagerlbl = new javax.swing.JLabel();
+        facilityissueslbl = new javax.swing.JLabel();
+        ratingslbl = new javax.swing.JLabel();
+        classmanagerbtn = new javax.swing.JButton();
+        facilityissuebtn = new javax.swing.JButton();
+        ratingsbtn = new javax.swing.JButton();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(1000, 200), new java.awt.Dimension(1000, 200), new java.awt.Dimension(1000, 200));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1920, 1200));
+        setSize(new java.awt.Dimension(350, 450));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        welcomelbl.setFont(new java.awt.Font("Segoe UI Semibold", 3, 48)); // NOI18N
+        welcomelbl.setFont(new java.awt.Font("Segoe UI Semilight", 3, 24)); // NOI18N
         welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
-        welcomelbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomelbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         welcomelbl.setText("welcome");
+        welcomelbl.setToolTipText("");
+        getContentPane().add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 714, 176));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(welcomelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1049, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(welcomelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(834, Short.MAX_VALUE))
-        );
+        bannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dynamic Martial Arts Abstract Banner.png"))); // NOI18N
+        getContentPane().add(bannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, -1, 200));
+
+        classmanagerbannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/instructor_classes_banner_v2.png"))); // NOI18N
+        getContentPane().add(classmanagerbannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+
+        facilityissuesbannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facility_problem_banner_350x450.png"))); // NOI18N
+        getContentPane().add(facilityissuesbannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, -1, -1));
+
+        ratingsbannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/instructor_ratings_banner_350x450.png"))); // NOI18N
+        getContentPane().add(ratingsbannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 270, -1, -1));
+        getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 1010, 70));
+        getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 590, 80, 40));
+        getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 80, 40));
+
+        classmanagerlbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        classmanagerlbl.setForeground(new java.awt.Color(255, 255, 255));
+        classmanagerlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        classmanagerlbl.setText("Class Manager");
+        classmanagerlbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(classmanagerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 740, -1, -1));
+
+        facilityissueslbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        facilityissueslbl.setForeground(new java.awt.Color(255, 255, 255));
+        facilityissueslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        facilityissueslbl.setText("Facility Issue Reporter");
+        getContentPane().add(facilityissueslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 740, -1, -1));
+
+        ratingslbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        ratingslbl.setForeground(new java.awt.Color(255, 255, 255));
+        ratingslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ratingslbl.setText("View Ratings");
+        getContentPane().add(ratingslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 740, -1, -1));
+
+        classmanagerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
+        classmanagerbtn.setText("classmanagerbtn");
+        getContentPane().add(classmanagerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, 350, 70));
+
+        facilityissuebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
+        facilityissuebtn.setText("jButton2");
+        getContentPane().add(facilityissuebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 710, 350, 70));
+
+        ratingsbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
+        ratingsbtn.setText("jButton3");
+        getContentPane().add(ratingsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 710, 350, 70));
+        getContentPane().add(filler4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 780, -1, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,6 +139,20 @@ public class InstructorDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bannerlbl;
+    private javax.swing.JLabel classmanagerbannerlbl;
+    private javax.swing.JButton classmanagerbtn;
+    private javax.swing.JLabel classmanagerlbl;
+    private javax.swing.JButton facilityissuebtn;
+    private javax.swing.JLabel facilityissuesbannerlbl;
+    private javax.swing.JLabel facilityissueslbl;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.JLabel ratingsbannerlbl;
+    private javax.swing.JButton ratingsbtn;
+    private javax.swing.JLabel ratingslbl;
     private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }
