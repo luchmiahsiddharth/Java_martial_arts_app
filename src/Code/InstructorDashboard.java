@@ -24,7 +24,7 @@ public class InstructorDashboard extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
         welcomelbl.setText("welcome, " + currentInstructor.getFirstName() +" "+ currentInstructor.getLastName());
-       
+        currentInstructor.taughtClasses();    
     }
 
     /**
@@ -107,11 +107,19 @@ public class InstructorDashboard extends javax.swing.JFrame {
 
         ratingsbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         ratingsbtn.setText("jButton3");
+        ratingsbtn.addActionListener(this::ratingsbtnActionPerformed);
         getContentPane().add(ratingsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 710, 350, 70));
         getContentPane().add(filler4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 780, -1, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ratingsbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingsbtnActionPerformed
+        String[] args = null;
+        RatingsForm.main(args);
+        System.out.println("hello");
+
+    }//GEN-LAST:event_ratingsbtnActionPerformed
 
     /**
      * @param args the command line arguments

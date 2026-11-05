@@ -83,8 +83,8 @@ public class LoginPage extends javax.swing.JFrame {
         switch (role) {
             case "Instructor":
                 return GSON.fromJson(record, Instructor.class);
-            // case "Student":
-            //     return GSON.fromJson(record, Student.class);
+            //case "Student":
+            //    return GSON.fromJson(record, Student.class);
             // case "Manager":
             //     return GSON.fromJson(record, Manager.class);
             // case "Administrator":
