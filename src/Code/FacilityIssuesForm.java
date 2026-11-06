@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author sidlu
@@ -24,7 +27,7 @@ import java.nio.charset.StandardCharsets;
 public class FacilityIssuesForm extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FacilityIssuesForm.class.getName());
-
+    Instructor currentInstructor = (Instructor) LoginPage.getCurrentUser(); 
     /**
      * Creates new form FacilityIssuesForm
      */
@@ -32,7 +35,63 @@ public class FacilityIssuesForm extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);       
+        issuedescriptiondisplaytxt.setLineWrap(true);
+        issuedescriptiondisplaytxt.setWrapStyleWord(true);
+        issuedescriptiontxt.setLineWrap(true);
+        issuedescriptiontxt.setWrapStyleWord(true);
+        
+        //populating the table
+        DefaultTableModel model =(DefaultTableModel) IssuesTable.getModel();
+        try (Reader issuesReader = new InputStreamReader(new FileInputStream("Facility_Issues.txt"), StandardCharsets.UTF_8)) {
+           
+            JsonArray issueRecords = JsonParser.parseReader(issuesReader).getAsJsonArray();
+            
+            for (JsonElement issueElement : issueRecords) {
+                JsonObject issueRecord = issueElement.getAsJsonObject();
+                   
+                    if (issueRecord.get("instructorFirstName").getAsString().equals(currentInstructor.getFirstName()) &&
+                            issueRecord.get("instructorLastName").getAsString().equals(currentInstructor.getLastName()))
+                        {
+                            model.addRow(new Object[]{
+                            issueRecord.get("issueId").getAsString(),
+                            issueRecord.get("issueTitle").getAsString(),
+                            issueRecord.get("status").getAsString()
+                        });                       
+                    }else{        
+                    }                
+            }
+                
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+        
+        IssuesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                // getValueIsAdjusting() ensures the event only fires once per click
+                if (!e.getValueIsAdjusting()) { 
+                    int selectedRow = IssuesTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        displayRowDetails();
+                    }
+                }
+            }
+        });        
+        
+        
+        IssuesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        IssuesTable.setRowSelectionInterval(0, 0); 
+                
+        
+        searchtxt.setText("Search...");
+        searchtxt.setForeground(java.awt.Color.GRAY);
+        
+        issuetitletxt.setText("Enter title...");
+        issuetitletxt.setForeground(java.awt.Color.GRAY);
+ 
+        issuedescriptiontxt.setText("Enter description...");
+        issuedescriptiontxt.setForeground(java.awt.Color.GRAY);
     }
 
     /**
@@ -46,22 +105,340 @@ public class FacilityIssuesForm extends javax.swing.JFrame {
 
         bannertextlbl = new javax.swing.JLabel();
         bannerlbl = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        IssuesTable = new javax.swing.JTable();
+        issuetitletxt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        issuedescriptiontxt = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        issuedescriptiondisplaytxt = new javax.swing.JTextArea();
+        issuestatusdisplaytxt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        issueiddisplaytxt = new javax.swing.JTextField();
+        issuetitledisplaytxt = new javax.swing.JTextField();
+        issuemadebydisplaytxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        searchtxt = new javax.swing.JTextField();
+        searchbtn = new javax.swing.JButton();
+        issueclearbtn = new javax.swing.JButton();
+        issuesubmitbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bannertextlbl.setFont(new java.awt.Font("Segoe UI Semilight", 3, 24)); // NOI18N
         bannertextlbl.setForeground(new java.awt.Color(255, 255, 255));
-        bannertextlbl.setText("Issue a facility issue");
+        bannertextlbl.setText("Issue a facility problem");
         getContentPane().add(bannertextlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         bannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dynamic Martial Arts Abstract Banner.png"))); // NOI18N
         bannerlbl.setText("jLabel1");
         getContentPane().add(bannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 200));
 
+        IssuesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Issue ID", "Title", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(IssuesTable);
+        if (IssuesTable.getColumnModel().getColumnCount() > 0) {
+            IssuesTable.getColumnModel().getColumn(0).setResizable(false);
+            IssuesTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+            IssuesTable.getColumnModel().getColumn(1).setResizable(false);
+            IssuesTable.getColumnModel().getColumn(2).setResizable(false);
+            IssuesTable.getColumnModel().getColumn(2).setPreferredWidth(5);
+        }
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 570, 490));
+
+        issuetitletxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                issuetitletxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                issuetitletxtFocusLost(evt);
+            }
+        });
+        issuetitletxt.addActionListener(this::issuetitletxtActionPerformed);
+        getContentPane().add(issuetitletxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 270, 30));
+
+        issuedescriptiontxt.setColumns(20);
+        issuedescriptiontxt.setRows(5);
+        issuedescriptiontxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                issuedescriptiontxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                issuedescriptiontxtFocusLost(evt);
+            }
+        });
+        jScrollPane2.setViewportView(issuedescriptiontxt);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 270, 440));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("New issue");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 250, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Details");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 230, 310, 30));
+
+        issuedescriptiondisplaytxt.setEditable(false);
+        issuedescriptiondisplaytxt.setColumns(20);
+        issuedescriptiondisplaytxt.setRows(5);
+        issuedescriptiondisplaytxt.setText("\n");
+        jScrollPane3.setViewportView(issuedescriptiondisplaytxt);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 520, 400, 330));
+
+        issuestatusdisplaytxt.setEditable(false);
+        getContentPane().add(issuestatusdisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 440, 340, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Submitted issues");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 310, 30));
+
+        issueiddisplaytxt.setEditable(false);
+        issueiddisplaytxt.addActionListener(this::issueiddisplaytxtActionPerformed);
+        getContentPane().add(issueiddisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 290, 340, 30));
+
+        issuetitledisplaytxt.setEditable(false);
+        getContentPane().add(issuetitledisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 340, 340, 30));
+
+        issuemadebydisplaytxt.setEditable(false);
+        getContentPane().add(issuemadebydisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 390, 340, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Description:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 490, 100, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Issued by: ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 390, -1, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Status: ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 440, 60, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Title:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 340, 60, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Issue ID:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 290, 60, 30));
+
+        searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchtxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchtxtFocusLost(evt);
+            }
+        });
+        searchtxt.addActionListener(this::searchtxtActionPerformed);
+        searchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchtxtKeyPressed(evt);
+            }
+        });
+        getContentPane().add(searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 270, 30));
+
+        searchbtn.setText("Search");
+        searchbtn.addActionListener(this::searchbtnActionPerformed);
+        getContentPane().add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 80, 30));
+
+        issueclearbtn.setText("Clear");
+        issueclearbtn.addActionListener(this::issueclearbtnActionPerformed);
+        getContentPane().add(issueclearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 830, 80, -1));
+
+        issuesubmitbtn.setText("Submit");
+        issuesubmitbtn.addActionListener(this::issuesubmitbtnActionPerformed);
+        getContentPane().add(issuesubmitbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 830, 80, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void issuetitletxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuetitletxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issuetitletxtActionPerformed
+
+    private void issueiddisplaytxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueiddisplaytxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issueiddisplaytxtActionPerformed
+
+    private void searchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchtxtActionPerformed
+
+    private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
+                String query = searchtxt.getText().trim();
+                if (query.equals("Search...")){
+                    query="";
+                }
+                executeSearch(query);
+    }//GEN-LAST:event_searchbtnActionPerformed
+
+    private void searchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusGained
+        if (searchtxt.getText().equals("Search...")) {
+                searchtxt.setText("");
+                searchtxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_searchtxtFocusGained
+
+    private void searchtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusLost
+        if (searchtxt.getText().isEmpty()) {
+                searchtxt.setText("Search...");
+                searchtxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_searchtxtFocusLost
+
+    private void searchtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtKeyPressed
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                String query = searchtxt.getText().trim();
+                executeSearch(query);
+
+            }
+    }//GEN-LAST:event_searchtxtKeyPressed
+
+    private void issuetitletxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_issuetitletxtFocusGained
+        if (issuetitletxt.getText().equals("Enter title...")) {
+                issuetitletxt.setText("");
+                issuetitletxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_issuetitletxtFocusGained
+
+    private void issuetitletxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_issuetitletxtFocusLost
+            if (issuetitletxt.getText().isEmpty()) {
+                issuetitletxt.setText("Enter title...");
+                issuetitletxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_issuetitletxtFocusLost
+
+    private void issuedescriptiontxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_issuedescriptiontxtFocusGained
+        if (issuedescriptiontxt.getText().equals("Enter description...")) {
+                issuedescriptiontxt.setText("");
+                issuedescriptiontxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_issuedescriptiontxtFocusGained
+
+    private void issuedescriptiontxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_issuedescriptiontxtFocusLost
+            if (issuedescriptiontxt.getText().isEmpty()) {
+                issuedescriptiontxt.setText("Enter description...");
+                issuedescriptiontxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_issuedescriptiontxtFocusLost
+
+    private void issueclearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueclearbtnActionPerformed
+        issuetitletxt.setText("Enter title...");
+        issuetitletxt.setForeground(java.awt.Color.GRAY);
+ 
+        issuedescriptiontxt.setText("Enter description...");
+        issuedescriptiontxt.setForeground(java.awt.Color.GRAY);
+    }//GEN-LAST:event_issueclearbtnActionPerformed
+
+    private void issuesubmitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesubmitbtnActionPerformed
+        if (issuetitletxt.getText().equals("Enter title...") || issuetitletxt.getText().isBlank()||issuetitletxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "title field cannot be empty",
+                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (issuedescriptiontxt.getText().equals("Enter description...") || issuedescriptiontxt.getText().isBlank()||issuedescriptiontxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "description field cannot be empty",
+                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+            
+        }
+        }
+                
+    }//GEN-LAST:event_issuesubmitbtnActionPerformed
+
+//helpers
+    
+    private void executeSearch(String query){
+      
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) IssuesTable.getModel();
+        javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> sorter = 
+                new javax.swing.table.TableRowSorter<>(model);
+        IssuesTable.setRowSorter(sorter);
+
+        // (?i) makes the search case-insensitive
+        sorter.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + query));
+        
+        if (searchtxt.getText().isEmpty() || searchtxt.getText().isBlank()){
+            sorter.setSortKeys(null);
+        }
+    }    
+    
+    private void displayRowDetails(){
+        int row = IssuesTable.getSelectedRow();
+
+         if (row != -1) {
+            int modelRow = IssuesTable.convertRowIndexToModel(row);
+    
+            String issueID = IssuesTable.getModel().getValueAt(modelRow, 0).toString();
+            String title = IssuesTable.getModel().getValueAt(modelRow, 1).toString();
+            String status = IssuesTable.getModel().getValueAt(modelRow, 2).toString();
+            String description = "";
+            
+            try (Reader issuesReader = new InputStreamReader(new FileInputStream("Facility_Issues.txt"), StandardCharsets.UTF_8)) {
+           
+            JsonArray issueRecords = JsonParser.parseReader(issuesReader).getAsJsonArray();
+            
+            for (JsonElement issueElement : issueRecords) {
+                JsonObject issueRecord = issueElement.getAsJsonObject();
+                   
+                    if (issueRecord.get("issueId").getAsString().equals(issueID))
+                        {
+                            description = issueRecord.get("issueDescription").getAsString();
+                                              
+                    }else{        
+                    }                
+            }
+                
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+    
+            issueiddisplaytxt.setText(issueID);
+            issuetitledisplaytxt.setText(title);
+            issuestatusdisplaytxt.setText(status);
+            issuemadebydisplaytxt.setText(currentInstructor.getFirstName()+" " +currentInstructor.getLastName());
+            issuedescriptiondisplaytxt.setText(description);
+            }
+
+    }
+    
+    private void submitIssue(){
+      
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -88,7 +465,30 @@ public class FacilityIssuesForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable IssuesTable;
     private javax.swing.JLabel bannerlbl;
     private javax.swing.JLabel bannertextlbl;
+    private javax.swing.JButton issueclearbtn;
+    private javax.swing.JTextArea issuedescriptiondisplaytxt;
+    private javax.swing.JTextArea issuedescriptiontxt;
+    private javax.swing.JTextField issueiddisplaytxt;
+    private javax.swing.JTextField issuemadebydisplaytxt;
+    private javax.swing.JTextField issuestatusdisplaytxt;
+    private javax.swing.JButton issuesubmitbtn;
+    private javax.swing.JTextField issuetitledisplaytxt;
+    private javax.swing.JTextField issuetitletxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton searchbtn;
+    private javax.swing.JTextField searchtxt;
     // End of variables declaration//GEN-END:variables
 }

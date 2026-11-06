@@ -36,7 +36,7 @@ public class RatingsForm extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
         
-        //creating and populating the table
+        //populating the table
         DefaultTableModel model =(DefaultTableModel) RatingsTable.getModel();
         try (Reader ratingsReader = new InputStreamReader(new FileInputStream("Ratings.txt"), StandardCharsets.UTF_8)) {
             try (Reader classReader = new InputStreamReader(new FileInputStream("Martial_Classes.txt"), StandardCharsets.UTF_8)) {
