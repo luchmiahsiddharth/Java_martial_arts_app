@@ -99,10 +99,12 @@ public class InstructorDashboard extends javax.swing.JFrame {
 
         classmanagerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         classmanagerbtn.setText("classmanagerbtn");
+        classmanagerbtn.addActionListener(this::classmanagerbtnActionPerformed);
         getContentPane().add(classmanagerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, 350, 70));
 
         facilityissuebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         facilityissuebtn.setText("jButton2");
+        facilityissuebtn.addActionListener(this::facilityissuebtnActionPerformed);
         getContentPane().add(facilityissuebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 710, 350, 70));
 
         ratingsbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
@@ -120,6 +122,18 @@ public class InstructorDashboard extends javax.swing.JFrame {
         System.out.println("hello");
 
     }//GEN-LAST:event_ratingsbtnActionPerformed
+
+    private void facilityissuebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facilityissuebtnActionPerformed
+        String[] args = null;
+        FacilityIssuesForm.main(args);
+        System.out.println("hello");
+    }//GEN-LAST:event_facilityissuebtnActionPerformed
+
+    private void classmanagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classmanagerbtnActionPerformed
+        String[] args = null;
+        ClassManagerForm.main(args);
+        System.out.println("hello");
+    }//GEN-LAST:event_classmanagerbtnActionPerformed
 
     /**
      * @param args the command line arguments

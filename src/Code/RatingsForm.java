@@ -35,6 +35,8 @@ public class RatingsForm extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
+        
+        //creating and populating the table
         DefaultTableModel model =(DefaultTableModel) RatingsTable.getModel();
         try (Reader ratingsReader = new InputStreamReader(new FileInputStream("Ratings.txt"), StandardCharsets.UTF_8)) {
             try (Reader classReader = new InputStreamReader(new FileInputStream("Martial_Classes.txt"), StandardCharsets.UTF_8)) {
@@ -75,6 +77,12 @@ public class RatingsForm extends javax.swing.JFrame {
         }catch(IOException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }        
+        
+        //search bar
+        
+        searchtxt.setText("Search...");
+        searchtxt.setForeground(java.awt.Color.GRAY);
+
     }
 
     /**
@@ -90,7 +98,8 @@ public class RatingsForm extends javax.swing.JFrame {
         bannerlbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         RatingsTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        searchtxt = new javax.swing.JTextField();
+        searchbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,10 +115,7 @@ public class RatingsForm extends javax.swing.JFrame {
 
         RatingsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Class ID", "Class name", "Rating", "Student"
@@ -133,17 +139,80 @@ public class RatingsForm extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 870, 840));
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 330, -1));
+        searchtxt.setText("Search");
+        searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchtxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchtxtFocusLost(evt);
+            }
+        });
+        searchtxt.addActionListener(this::searchtxtActionPerformed);
+        searchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchtxtKeyPressed(evt);
+            }
+        });
+        getContentPane().add(searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 310, -1));
+
+        searchbtn.setText("Search");
+        searchbtn.addActionListener(this::searchbtnActionPerformed);
+        getContentPane().add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchtxtActionPerformed
 
+    private void searchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusGained
+        if (searchtxt.getText().equals("Search...")) {
+                searchtxt.setText("");
+                searchtxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_searchtxtFocusGained
+
+    private void searchtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusLost
+        if (searchtxt.getText().isEmpty()) {
+                searchtxt.setText("Search...");
+                searchtxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_searchtxtFocusLost
+
+    private void searchtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtKeyPressed
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                String query = searchtxt.getText().trim();
+                executeSearch(query);
+
+            }
+    }//GEN-LAST:event_searchtxtKeyPressed
+
+    private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
+                String query = searchtxt.getText().trim();
+                if (query.equals("Search...")){
+                    query="";
+                }
+                executeSearch(query);
+    }//GEN-LAST:event_searchbtnActionPerformed
+    
+//helpers
+    
+    private void executeSearch(String query){
+      
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) RatingsTable.getModel();
+        javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> sorter = 
+                new javax.swing.table.TableRowSorter<>(model);
+        RatingsTable.setRowSorter(sorter);
+
+        // (?i) makes the search case-insensitive
+        sorter.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + query));
+        
+        if (searchtxt.getText().isEmpty() || searchtxt.getText().isBlank()){
+            sorter.setSortKeys(null);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -168,12 +237,15 @@ public class RatingsForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new RatingsForm().setVisible(true));
     }
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RatingsTable;
     private javax.swing.JLabel bannerlbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton searchbtn;
+    private javax.swing.JTextField searchtxt;
     // End of variables declaration//GEN-END:variables
 }
