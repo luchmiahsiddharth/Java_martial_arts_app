@@ -119,20 +119,18 @@ public class InstructorDashboard extends javax.swing.JFrame {
     private void ratingsbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingsbtnActionPerformed
         String[] args = null;
         RatingsForm.main(args);
-        System.out.println("hello");
-
     }//GEN-LAST:event_ratingsbtnActionPerformed
 
     private void facilityissuebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facilityissuebtnActionPerformed
         String[] args = null;
         FacilityIssuesForm.main(args);
-        System.out.println("hello");
+        
     }//GEN-LAST:event_facilityissuebtnActionPerformed
 
     private void classmanagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classmanagerbtnActionPerformed
         String[] args = null;
         ClassManagerForm.main(args);
-        System.out.println("hello");
+        
     }//GEN-LAST:event_classmanagerbtnActionPerformed
 
     /**

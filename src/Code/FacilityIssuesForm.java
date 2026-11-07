@@ -5,9 +5,11 @@
 package Code;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 import java.io.FileInputStream;
@@ -17,6 +19,9 @@ import javax.swing.table.DefaultTableModel;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -372,7 +377,27 @@ public class FacilityIssuesForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "description field cannot be empty",
                         "Invalid entry", JOptionPane.ERROR_MESSAGE);
         }else{
-            
+                try {
+                    String newId = addFacilityIssue(issuetitletxt.getText(), issuedescriptiontxt.getText(),
+                            currentInstructor.getFirstName(), currentInstructor.getLastName());
+
+                    // same three columns the constructor loads
+                    DefaultTableModel model = (DefaultTableModel) IssuesTable.getModel();
+                    model.addRow(new Object[]{newId, issuetitletxt.getText(), "pending"});
+
+                    // select the new row so the Details panel shows it (-1 = hidden by a search filter)
+                    int viewRow = IssuesTable.convertRowIndexToView(model.getRowCount() - 1);
+                    if (viewRow >= 0) {
+                        IssuesTable.setRowSelectionInterval(viewRow, viewRow);
+                        IssuesTable.scrollRectToVisible(IssuesTable.getCellRect(viewRow, 0, true));
+                    }
+
+                    issueclearbtnActionPerformed(null);   // put the placeholders back
+                    JOptionPane.showMessageDialog(this, "Issue " + newId + " submitted successfully!");
+                } catch (IOException | JsonParseException ex) {
+                    JOptionPane.showMessageDialog(this, "Could not save the issue: " + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
         }
                 
@@ -433,9 +458,54 @@ public class FacilityIssuesForm extends javax.swing.JFrame {
             }
 
     }
-    
-    private void submitIssue(){
-      
+
+    private static final String ISSUES_FILE = "Facility_Issues.txt";
+
+    private static String addFacilityIssue(String title, String description,
+                                           String firstName, String lastName) throws IOException {
+        Path path = Paths.get(ISSUES_FILE);
+
+        // 1. Load the existing array (start a new one if the file is missing or empty)
+        JsonArray issues = new JsonArray();
+        if (Files.exists(path)) {
+            try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+                JsonElement root = JsonParser.parseReader(reader);
+                if (root.isJsonArray()) {
+                    issues = root.getAsJsonArray();
+                } else if (!root.isJsonNull()) {
+                    throw new IOException(ISSUES_FILE + " does not contain a JSON array");
+                }
+            }
+        }
+
+        // 2. Next id = highest existing number + 1  ("I008" -> "I009")
+        int highest = 0;
+        for (JsonElement element : issues) {
+            if (!element.isJsonObject()) continue;
+            JsonElement idElement = element.getAsJsonObject().get("issueId");
+            if (idElement != null && idElement.isJsonPrimitive()) {
+                String id = idElement.getAsString();
+                if (id.matches("I\\d{1,9}")) {
+                    highest = Math.max(highest, Integer.parseInt(id.substring(1)));
+                }
+            }
+        }
+        String newId = String.format("I%03d", highest + 1);
+
+        // 3. Build the new record
+        JsonObject issue = new JsonObject();
+        issue.addProperty("issueId", newId);
+        issue.addProperty("issueTitle", title);
+        issue.addProperty("issueDescription", description);
+        issue.addProperty("instructorFirstName", firstName);
+        issue.addProperty("instructorLastName", lastName);
+        issue.addProperty("status", "pending");
+        issues.add(issue);
+
+        // 4. Write the whole array back
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Files.writeString(path, gson.toJson(issues), StandardCharsets.UTF_8);
+        return newId;
     }
     
     
