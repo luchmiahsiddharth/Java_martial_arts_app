@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author sidlu
@@ -25,6 +28,7 @@ public class ClassManagerForm extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ClassManagerForm.class.getName());
 
+    Instructor currentInstructor = (Instructor) LoginPage.getCurrentUser(); 
     /**
      * Creates new form ClassManagerForm
      */
@@ -33,6 +37,64 @@ public class ClassManagerForm extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new java.awt.Color(20,20,25));        
         setLocationRelativeTo(null);
+       
+        //populating the table
+        DefaultTableModel model =(DefaultTableModel) classesTable.getModel();
+        try (Reader classessReader = new InputStreamReader(new FileInputStream("Martial_Classes.txt"), StandardCharsets.UTF_8)) {
+           
+            JsonArray classesRecords = JsonParser.parseReader(classessReader).getAsJsonArray();
+            
+            for (JsonElement classesElement : classesRecords) {
+                JsonObject classesRecord = classesElement.getAsJsonObject();
+                   
+                    if (classesRecord.get("instructor").getAsString().equals(currentInstructor.getUsername()))
+                        {
+                            model.addRow(new Object[]{
+                            classesRecord.get("classId").getAsString(),
+                            classesRecord.get("className").getAsString(),
+                            classesRecord.get("date").getAsString()
+                        });                       
+                    }else{        
+                    }                
+            }
+                
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+        
+        classesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                // getValueIsAdjusting() ensures the event only fires once per click
+                if (!e.getValueIsAdjusting()) { 
+                    int selectedRow = classesTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        displayRowDetails();
+                    }
+                }
+            }
+        }); 
+                
+        classstudentsdisplaytxt.setLineWrap(true);
+        classstudentsdisplaytxt.setWrapStyleWord(true);
+          
+        classesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        classesTable.setRowSelectionInterval(0, 0);
+        
+        searchtxt.setText("Search...");
+        searchtxt.setForeground(java.awt.Color.GRAY);
+        
+        classnametxt.setText("Enter class name...");
+        classnametxt.setForeground(java.awt.Color.GRAY);
+        
+        classfeetxt.setText("Enter class fee...");
+        classfeetxt.setForeground(java.awt.Color.GRAY);
+        
+        classdatetxt.setText("Enter class date...");
+        classdatetxt.setForeground(java.awt.Color.GRAY);
+        
+        classtimetxt.setText("Enter class time...");
+        classtimetxt.setForeground(java.awt.Color.GRAY);
     }
 
     /**
@@ -46,6 +108,33 @@ public class ClassManagerForm extends javax.swing.JFrame {
 
         bannertextlbl = new javax.swing.JLabel();
         bannerlbl = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        classesTable = new javax.swing.JTable();
+        classnametxt = new javax.swing.JTextField();
+        classiddisplaylbl = new javax.swing.JLabel();
+        classnamedisplaylbl = new javax.swing.JLabel();
+        classfeedisplaylbl = new javax.swing.JLabel();
+        classdatedisplaylbl = new javax.swing.JLabel();
+        classtimedisplaylbl = new javax.swing.JLabel();
+        classstudentsdisplaylbl = new javax.swing.JLabel();
+        classiddisplaytxt = new javax.swing.JTextField();
+        classnamedisplaytxt = new javax.swing.JTextField();
+        classfeedisplaytxt = new javax.swing.JTextField();
+        classdatedisplaytxt = new javax.swing.JTextField();
+        classtimedisplaytxt = new javax.swing.JTextField();
+        cancelclassbtn = new javax.swing.JButton();
+        searchtxt = new javax.swing.JTextField();
+        searchbtn = new javax.swing.JButton();
+        classfeetxt = new javax.swing.JTextField();
+        classdatetxt = new javax.swing.JTextField();
+        classtimetxt = new javax.swing.JTextField();
+        clearbtn = new javax.swing.JButton();
+        submitclassbtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        classstudentsdisplaytxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,8 +148,269 @@ public class ClassManagerForm extends javax.swing.JFrame {
         bannerlbl.setText("jLabel1");
         getContentPane().add(bannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 200));
 
+        classesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Class ID", "Class name", "Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(classesTable);
+        if (classesTable.getColumnModel().getColumnCount() > 0) {
+            classesTable.getColumnModel().getColumn(0).setResizable(false);
+            classesTable.getColumnModel().getColumn(1).setResizable(false);
+            classesTable.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 650, 450));
+
+        classnametxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                classnametxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                classnametxtFocusLost(evt);
+            }
+        });
+        getContentPane().add(classnametxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 290, 30));
+
+        classiddisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classiddisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classiddisplaylbl.setText("Class ID:");
+        getContentPane().add(classiddisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 320, 70, 30));
+
+        classnamedisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classnamedisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classnamedisplaylbl.setText("Class name:");
+        getContentPane().add(classnamedisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 370, 70, 30));
+
+        classfeedisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classfeedisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classfeedisplaylbl.setText("Fee:");
+        getContentPane().add(classfeedisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 420, 70, 30));
+
+        classdatedisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classdatedisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classdatedisplaylbl.setText("Date: ");
+        getContentPane().add(classdatedisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 470, 70, 30));
+
+        classtimedisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classtimedisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classtimedisplaylbl.setText("Time: ");
+        getContentPane().add(classtimedisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 520, 70, 30));
+
+        classstudentsdisplaylbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classstudentsdisplaylbl.setForeground(new java.awt.Color(255, 255, 255));
+        classstudentsdisplaylbl.setText("Students:");
+        getContentPane().add(classstudentsdisplaylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 570, 70, 30));
+
+        classiddisplaytxt.setEditable(false);
+        getContentPane().add(classiddisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 320, 290, 30));
+
+        classnamedisplaytxt.setEditable(false);
+        getContentPane().add(classnamedisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 370, 290, 30));
+
+        classfeedisplaytxt.setEditable(false);
+        getContentPane().add(classfeedisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 420, 290, 30));
+
+        classdatedisplaytxt.setEditable(false);
+        getContentPane().add(classdatedisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 470, 290, 30));
+
+        classtimedisplaytxt.setEditable(false);
+        getContentPane().add(classtimedisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 520, 290, 30));
+
+        cancelclassbtn.setText("Cancel class");
+        getContentPane().add(cancelclassbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 100, 30));
+
+        searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchtxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchtxtFocusLost(evt);
+            }
+        });
+        searchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchtxtKeyPressed(evt);
+            }
+        });
+        getContentPane().add(searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 290, 30));
+
+        searchbtn.setText("Search");
+        searchbtn.addActionListener(this::searchbtnActionPerformed);
+        getContentPane().add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, -1, 30));
+
+        classfeetxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                classfeetxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                classfeetxtFocusLost(evt);
+            }
+        });
+        getContentPane().add(classfeetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 290, 30));
+
+        classdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                classdatetxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                classdatetxtFocusLost(evt);
+            }
+        });
+        getContentPane().add(classdatetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 290, 30));
+
+        classtimetxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                classtimetxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                classtimetxtFocusLost(evt);
+            }
+        });
+        getContentPane().add(classtimetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 290, 30));
+
+        clearbtn.setText("Clear");
+        clearbtn.addActionListener(this::clearbtnActionPerformed);
+        getContentPane().add(clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 100, 30));
+
+        submitclassbtn.setText("Submit");
+        getContentPane().add(submitclassbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 100, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("New Class");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 300, 50));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Details");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 240, 300, 50));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Classes");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 300, 50));
+
+        classstudentsdisplaytxt.setEditable(false);
+        classstudentsdisplaytxt.setColumns(20);
+        classstudentsdisplaytxt.setRows(5);
+        jScrollPane2.setViewportView(classstudentsdisplaytxt);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 570, 290, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
+        String query = searchtxt.getText().trim();
+                if (query.equals("Search...")){
+                    query="";
+                }
+                executeSearch(query);
+    }//GEN-LAST:event_searchbtnActionPerformed
+
+    private void searchtxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusGained
+         if (searchtxt.getText().equals("Search...")) {
+                searchtxt.setText("");
+                searchtxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_searchtxtFocusGained
+
+    private void searchtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtxtFocusLost
+        if (searchtxt.getText().isEmpty()) {
+                searchtxt.setText("Search...");
+                searchtxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_searchtxtFocusLost
+
+    private void classnametxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classnametxtFocusGained
+        if (classnametxt.getText().equals("Enter class name...")) {
+                classnametxt.setText("");
+                classnametxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_classnametxtFocusGained
+
+    private void classnametxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classnametxtFocusLost
+        if (classnametxt.getText().isEmpty()) {
+                classnametxt.setText("Enter class name...");
+                classnametxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_classnametxtFocusLost
+
+    private void classfeetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classfeetxtFocusGained
+        if (classfeetxt.getText().equals("Enter class fee...")) {
+                classfeetxt.setText("");
+                classfeetxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_classfeetxtFocusGained
+
+    private void classfeetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classfeetxtFocusLost
+        if (classfeetxt.getText().isEmpty()) {
+                classfeetxt.setText("Enter class fee...");
+                classfeetxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_classfeetxtFocusLost
+
+    private void classdatetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classdatetxtFocusGained
+        if (classdatetxt.getText().equals("Enter class date...")) {
+                classdatetxt.setText("");
+                classdatetxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_classdatetxtFocusGained
+
+    private void classdatetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classdatetxtFocusLost
+        if (classdatetxt.getText().isEmpty()) {
+                classdatetxt.setText("Enter class date...");
+                classdatetxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_classdatetxtFocusLost
+
+    private void classtimetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classtimetxtFocusGained
+        if (classtimetxt.getText().equals("Enter class time...")) {
+                classtimetxt.setText("");
+                classtimetxt.setForeground(java.awt.Color.BLACK);
+            }
+    }//GEN-LAST:event_classtimetxtFocusGained
+
+    private void classtimetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_classtimetxtFocusLost
+        if (classtimetxt.getText().isEmpty()) {
+                classtimetxt.setText("Enter class time...");
+                classtimetxt.setForeground(java.awt.Color.GRAY);
+            }
+    }//GEN-LAST:event_classtimetxtFocusLost
+
+    private void searchtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                String query = searchtxt.getText().trim();
+                executeSearch(query);
+
+            }
+    }//GEN-LAST:event_searchtxtKeyPressed
+
+    private void clearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearbtnActionPerformed
+        classnametxt.setText("Enter class name...");
+        classnametxt.setForeground(java.awt.Color.GRAY);
+        
+        classfeetxt.setText("Enter class fee...");
+        classfeetxt.setForeground(java.awt.Color.GRAY);
+        
+        classdatetxt.setText("Enter class date...");
+        classdatetxt.setForeground(java.awt.Color.GRAY);
+        
+        classtimetxt.setText("Enter class time...");
+        classtimetxt.setForeground(java.awt.Color.GRAY);
+    }//GEN-LAST:event_clearbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,9 +436,114 @@ public class ClassManagerForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ClassManagerForm().setVisible(true));
     }
+    
+    //helpers
+    
+    private void executeSearch(String query){
+      
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) classesTable.getModel();
+        javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> sorter = 
+                new javax.swing.table.TableRowSorter<>(model);
+        classesTable.setRowSorter(sorter);
+
+        // (?i) makes the search case-insensitive
+        sorter.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + query));
+        
+        if (searchtxt.getText().isEmpty() || searchtxt.getText().isBlank()){
+            sorter.setSortKeys(null);
+        }
+    }  
+    private void displayRowDetails(){
+        int row = classesTable.getSelectedRow();
+
+         if (row != -1) {
+            int modelRow = classesTable.convertRowIndexToModel(row);
+    
+            String classID = classesTable.getModel().getValueAt(modelRow, 0).toString();
+            String className = classesTable.getModel().getValueAt(modelRow, 1).toString();
+            String classDate = classesTable.getModel().getValueAt(modelRow, 2).toString();
+            String time = "", fee = "";
+            String students = "";
+           
+            
+            try (Reader classesReader = new InputStreamReader(new FileInputStream("Martial_Classes.txt"), StandardCharsets.UTF_8)) {
+           
+            JsonArray classesRecords = JsonParser.parseReader(classesReader).getAsJsonArray();
+            
+            for (JsonElement classesElement : classesRecords) {
+                JsonObject classesRecord = classesElement.getAsJsonObject();
+                   
+                    if (classesRecord.get("classId").getAsString().equals(classID))
+                        {
+                            fee = classesRecord.get("fee").getAsString();
+                            time = classesRecord.get("time").getAsString();
+                            
+                            JsonArray studentsArray = classesRecord.getAsJsonArray("students");
+
+                            StringBuilder studentsBuilder = new StringBuilder();
+
+                            for (JsonElement student : studentsArray) {
+                                if (!student.isJsonNull()) {
+                                    if (studentsBuilder.length() > 0) {
+                                        studentsBuilder.append(", ");
+                                    }
+
+                                    studentsBuilder.append(student.getAsString());
+                                }
+                            }
+
+                            students = studentsBuilder.toString();
+
+                            break;
+                                              
+                    }else{        
+                    }                
+            }
+                
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }  
+    
+            classiddisplaytxt.setText(classID);
+            classnamedisplaytxt.setText(className);
+            classdatedisplaytxt.setText(classDate);
+            classfeedisplaytxt.setText(fee);
+            classtimedisplaytxt.setText(time);
+            classstudentsdisplaytxt.setText(students);
+           
+            }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bannerlbl;
     private javax.swing.JLabel bannertextlbl;
+    private javax.swing.JButton cancelclassbtn;
+    private javax.swing.JLabel classdatedisplaylbl;
+    private javax.swing.JTextField classdatedisplaytxt;
+    private javax.swing.JTextField classdatetxt;
+    private javax.swing.JTable classesTable;
+    private javax.swing.JLabel classfeedisplaylbl;
+    private javax.swing.JTextField classfeedisplaytxt;
+    private javax.swing.JTextField classfeetxt;
+    private javax.swing.JLabel classiddisplaylbl;
+    private javax.swing.JTextField classiddisplaytxt;
+    private javax.swing.JLabel classnamedisplaylbl;
+    private javax.swing.JTextField classnamedisplaytxt;
+    private javax.swing.JTextField classnametxt;
+    private javax.swing.JLabel classstudentsdisplaylbl;
+    private javax.swing.JTextArea classstudentsdisplaytxt;
+    private javax.swing.JLabel classtimedisplaylbl;
+    private javax.swing.JTextField classtimedisplaytxt;
+    private javax.swing.JTextField classtimetxt;
+    private javax.swing.JButton clearbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton searchbtn;
+    private javax.swing.JTextField searchtxt;
+    private javax.swing.JButton submitclassbtn;
     // End of variables declaration//GEN-END:variables
 }

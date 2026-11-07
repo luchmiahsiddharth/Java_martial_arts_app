@@ -82,25 +82,24 @@ public class InstructorDashboard extends javax.swing.JFrame {
         classmanagerlbl.setForeground(new java.awt.Color(255, 255, 255));
         classmanagerlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         classmanagerlbl.setText("Class Manager");
-        classmanagerlbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(classmanagerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 740, -1, -1));
+        getContentPane().add(classmanagerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, 350, 70));
 
         facilityissueslbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         facilityissueslbl.setForeground(new java.awt.Color(255, 255, 255));
         facilityissueslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         facilityissueslbl.setText("Facility Issue Reporter");
-        getContentPane().add(facilityissueslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 740, -1, -1));
+        getContentPane().add(facilityissueslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 710, 350, 70));
 
         ratingslbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         ratingslbl.setForeground(new java.awt.Color(255, 255, 255));
         ratingslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ratingslbl.setText("View Ratings");
-        getContentPane().add(ratingslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 740, -1, -1));
+        getContentPane().add(ratingslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 710, 350, 70));
 
         classmanagerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         classmanagerbtn.setText("classmanagerbtn");
         classmanagerbtn.addActionListener(this::classmanagerbtnActionPerformed);
-        getContentPane().add(classmanagerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, 350, 70));
+        getContentPane().add(classmanagerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 680, 350, 100));
 
         facilityissuebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
         facilityissuebtn.setText("jButton2");

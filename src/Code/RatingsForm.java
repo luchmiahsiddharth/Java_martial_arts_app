@@ -137,7 +137,7 @@ public class RatingsForm extends javax.swing.JFrame {
             RatingsTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 870, 840));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 870, 520));
 
         searchtxt.setText("Search");
         searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -154,11 +154,11 @@ public class RatingsForm extends javax.swing.JFrame {
                 searchtxtKeyPressed(evt);
             }
         });
-        getContentPane().add(searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 310, -1));
+        getContentPane().add(searchtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 310, 30));
 
         searchbtn.setText("Search");
         searchbtn.addActionListener(this::searchbtnActionPerformed);
-        getContentPane().add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
+        getContentPane().add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
