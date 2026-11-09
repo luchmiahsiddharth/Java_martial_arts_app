@@ -5,9 +5,12 @@
 package Code;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 import java.io.FileInputStream;
@@ -17,6 +20,15 @@ import javax.swing.table.DefaultTableModel;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -29,6 +41,12 @@ public class ClassManagerForm extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ClassManagerForm.class.getName());
 
     Instructor currentInstructor = (Instructor) LoginPage.getCurrentUser(); 
+    private static final String CANCELLED_SUFFIX = "-CANCELLED";
+
+    /** Thrown when a class may not be cancelled (a rule was broken, not a file problem). */
+    private static class CancelRefusedException extends Exception {
+        CancelRefusedException(String message) { super(message); }
+    }
     /**
      * Creates new form ClassManagerForm
      */
@@ -229,6 +247,7 @@ public class ClassManagerForm extends javax.swing.JFrame {
         getContentPane().add(classtimedisplaytxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 520, 290, 30));
 
         cancelclassbtn.setText("Cancel class");
+        cancelclassbtn.addActionListener(this::cancelclassbtnActionPerformed);
         getContentPane().add(cancelclassbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 100, 30));
 
         searchtxt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -285,6 +304,7 @@ public class ClassManagerForm extends javax.swing.JFrame {
         getContentPane().add(clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 100, 30));
 
         submitclassbtn.setText("Submit");
+        submitclassbtn.addActionListener(this::submitclassbtnActionPerformed);
         getContentPane().add(submitclassbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 100, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
@@ -412,32 +432,85 @@ public class ClassManagerForm extends javax.swing.JFrame {
         classtimetxt.setForeground(java.awt.Color.GRAY);
     }//GEN-LAST:event_clearbtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+    private void cancelclassbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelclassbtnActionPerformed
+        int viewRow = classesTable.getSelectedRow();
+        if (viewRow == -1) {
+            JOptionPane.showMessageDialog(this, "Select the class you want to cancel first.",
+                    "No class selected", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-        //</editor-fold>
+        DefaultTableModel model = (DefaultTableModel) classesTable.getModel();
+        int modelRow = classesTable.convertRowIndexToModel(viewRow);
+        String classId = model.getValueAt(modelRow, 0).toString();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ClassManagerForm().setVisible(true));
-    }
+        try {
+            String newName = cancelClass(classId, LocalDateTime.now());
+            model.setValueAt(newName, modelRow, 1);   // the table shows "...-CANCELLED" straight away
+            displayRowDetails();                      // details panel: new name, students now empty
+            JOptionPane.showMessageDialog(this, "Class " + classId + " has been cancelled.");
+        } catch (CancelRefusedException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Cannot cancel class", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException | JsonParseException | DateTimeException ex) {
+            JOptionPane.showMessageDialog(this, "Could not cancel the class: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_cancelclassbtnActionPerformed
+
+    private void submitclassbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitclassbtnActionPerformed
+        if (classnametxt.getText().equals("Enter class name...") || classnametxt.getText().isBlank()||classnametxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "name field cannot be empty",
+                        "Invalid entry", JOptionPane.ERROR_MESSAGE);           
+        }else{
+            if (classfeetxt.getText().equals("Enter class fee...") || classfeetxt.getText().isBlank()||classfeetxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "fee field cannot be empty",
+                            "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (classdatetxt.getText().equals("Enter class date...") || classdatetxt.getText().isBlank()||classdatetxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "date field cannot be empty",
+                            "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (!checkDate(classdatetxt.getText())){
+                JOptionPane.showMessageDialog(this, "Invalid date entered. Please enter date in format yyyy-MM-dd",
+                        "Invalid entry", JOptionPane.ERROR_MESSAGE);                 
+        }else{           
+            if (classtimetxt.getText().equals("Enter class time...") || classtimetxt.getText().isBlank()||classtimetxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "time field cannot be empty",
+                            "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (!checkTime(classtimetxt.getText())){
+                JOptionPane.showMessageDialog(this, "Invalid time entered. Please enter date in format HH:mm",
+                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
+        }else{
+                try {
+                    String newId = addClass(classnametxt.getText(), classfeetxt.getText(),
+                            classdatetxt.getText(), classtimetxt.getText());
+
+                    // same three columns the constructor loads
+                    DefaultTableModel model = (DefaultTableModel) classesTable.getModel();
+                    model.addRow(new Object[]{newId, classnametxt.getText(), classdatetxt.getText()});
+
+                    // select the new row so the Details panel shows it (-1 = hidden by a search filter)
+                    int viewRow = classesTable.convertRowIndexToView(model.getRowCount() - 1);
+                    if (viewRow >= 0) {
+                        classesTable.setRowSelectionInterval(viewRow, viewRow);
+                        classesTable.scrollRectToVisible(classesTable.getCellRect(viewRow, 0, true));
+                    }
+
+                    clearbtnActionPerformed(null);   // put the placeholders back
+                    JOptionPane.showMessageDialog(this, "Class " + newId + " created successfully!");
+                } catch (IOException | JsonParseException ex) {
+                    JOptionPane.showMessageDialog(this, "Could not save the class: " + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+        }
+        }
+        }
+        }
+        }
+        }
+    }//GEN-LAST:event_submitclassbtnActionPerformed
     
-    //helpers
+//helpers
     
     private void executeSearch(String query){
       
@@ -512,8 +585,164 @@ public class ClassManagerForm extends javax.swing.JFrame {
             classstudentsdisplaytxt.setText(students);
            
             }
-
     }
+    private static String cancelClass(String classId, LocalDateTime now) throws IOException, CancelRefusedException {
+        Path path = Paths.get(CLASSES_FILE);
+
+        // 1. load the file
+        JsonArray classes;
+        try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+            JsonElement root = JsonParser.parseReader(reader);
+            if (!root.isJsonArray()) {
+                throw new IOException(CLASSES_FILE + " does not contain a JSON array");
+            }
+            classes = root.getAsJsonArray();
+        }
+
+        // 2. find the class record
+        JsonObject classRecord = null;
+        for (JsonElement element : classes) {
+            JsonObject candidate = element.getAsJsonObject();
+            if (candidate.get("classId").getAsString().equals(classId)) {
+                classRecord = candidate;
+                break;
+            }
+        }
+        if (classRecord == null) {
+            throw new CancelRefusedException("Class " + classId + " was not found in " + CLASSES_FILE + ".");
+        }
+
+        // 3. rules: not already cancelled, and its date and time must not be before now
+        String name = classRecord.get("className").getAsString();
+        if (name.endsWith(CANCELLED_SUFFIX)) {
+            throw new CancelRefusedException("This class has already been cancelled.");
+        }
+        String date = classRecord.get("date").getAsString();
+        String time = classRecord.get("time").getAsString();
+        LocalDateTime start = LocalDateTime.of(LocalDate.parse(date), LocalTime.parse(time));
+        if (start.isBefore(now)) {
+            throw new CancelRefusedException("This class started on " + date + " at " + time
+                    + ", so it can no longer be cancelled.");
+        }
+
+        // 4. append -CANCELLED, and empty the student list (the 6 slots stay, all null)
+        String newName = name + CANCELLED_SUFFIX;
+        classRecord.addProperty("className", newName);
+        JsonElement students = classRecord.get("students");
+        if (students != null && students.isJsonArray()) {
+            JsonArray emptied = new JsonArray();
+            for (int i = 0; i < students.getAsJsonArray().size(); i++) {
+                emptied.add(JsonNull.INSTANCE);
+            }
+            classRecord.add("students", emptied);
+        }
+
+        // 5. write the whole array back
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Files.writeString(path, gson.toJson(classes), StandardCharsets.UTF_8);
+        return newName;
+    }
+    
+    private static final String CLASSES_FILE = "Martial_Classes.txt";
+
+    private String addClass(String name, String fee,
+                                           String date, String time) throws IOException {
+        Path path = Paths.get(CLASSES_FILE);      
+        JsonArray students = new JsonArray();
+
+        for (int i = 0; i < 6; i++) {
+            students.add(JsonNull.INSTANCE);
+        }
+
+        // 1. Load the existing array (start a new one if the file is missing or empty)
+        JsonArray classes = new JsonArray();
+        if (Files.exists(path)) {
+            try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+                JsonElement root = JsonParser.parseReader(reader);
+                if (root.isJsonArray()) {
+                    classes = root.getAsJsonArray();
+                } else if (!root.isJsonNull()) {
+                    throw new IOException(CLASSES_FILE + " does not contain a JSON array");
+                }
+            }
+        }
+
+        // 2. Next id = highest existing number + 1  ("I008" -> "I009")
+        int highest = 0;
+        for (JsonElement element : classes) {
+            if (!element.isJsonObject()) continue;
+            JsonElement idElement = element.getAsJsonObject().get("classId");
+            if (idElement != null && idElement.isJsonPrimitive()) {
+                String id = idElement.getAsString();
+                if (id.matches("C\\d{1,9}")) {
+                    highest = Math.max(highest, Integer.parseInt(id.substring(1)));
+                }
+            }
+        }
+        String newId = String.format("C%03d", highest + 1);
+
+        // 3. Build the new record
+        JsonObject newclass = new JsonObject();
+        newclass.addProperty("classId", newId);
+        newclass.addProperty("className", name);
+        newclass.add("students", students);
+        newclass.addProperty("instructor", currentInstructor.getUsername());
+        newclass.addProperty("fee", fee);
+        newclass.addProperty("date", date);
+        newclass.addProperty("time", time);
+        classes.add(newclass);
+
+        // 4. Write the whole array back
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Files.writeString(path, gson.toJson(classes), StandardCharsets.UTF_8);
+        return newId;
+    }
+    
+    
+    private boolean checkDate(String inputDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(inputDate, formatter);
+            return true; 
+        } catch (DateTimeParseException e) {
+            return false; // Wrong format or invalid date (like Feb 30)
+        }
+    }
+    
+    private boolean checkTime(String inputTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            LocalDate.parse(inputTime, formatter);
+            return true; 
+        } catch (DateTimeParseException e) {
+            return false; // Wrong format or invalid time
+        }
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new ClassManagerForm().setVisible(true));
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bannerlbl;
