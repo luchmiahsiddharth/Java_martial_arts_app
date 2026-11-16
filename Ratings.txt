@@ -5,7 +5,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 5,
-    "studentFirstName": "Aisha"
+    "studentUsername": "arahman"
   },
   {
     "ratingId": "R002",
@@ -13,7 +13,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 4,
-    "studentFirstName": "Daniel"
+    "studentUsername": "dlim"
   },
   {
     "ratingId": "R003",
@@ -21,7 +21,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 4,
-    "studentFirstName": "Aisha"
+    "studentUsername": "arahman"
   },
   {
     "ratingId": "R004",
@@ -29,7 +29,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 5,
-    "studentFirstName": "Lucas"
+    "studentUsername": "lpereira"
   },
   {
     "ratingId": "R005",
@@ -37,7 +37,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 4,
-    "studentFirstName": "Lucas"
+    "studentUsername": "lpereira"
   },
   {
     "ratingId": "R006",
@@ -45,7 +45,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 5,
-    "studentFirstName": "Sofia"
+    "studentUsername": "smartinez"
   },
   {
     "ratingId": "R007",
@@ -53,7 +53,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 5,
-    "studentFirstName": "Aisha"
+    "studentUsername": "arahman"
   },
   {
     "ratingId": "R008",
@@ -61,7 +61,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 4,
-    "studentFirstName": "Sofia"
+    "studentUsername": "smartinez"
   },
   {
     "ratingId": "R009",
@@ -69,7 +69,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 4,
-    "studentFirstName": "Priya"
+    "studentUsername": "pnair"
   },
   {
     "ratingId": "R010",
@@ -77,7 +77,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 3,
-    "studentFirstName": "Kenji"
+    "studentUsername": "ktanaka"
   },
   {
     "ratingId": "R011",
@@ -85,7 +85,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 5,
-    "studentFirstName": "Fatima"
+    "studentUsername": "fkhan"
   },
   {
     "ratingId": "R012",
@@ -93,7 +93,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 4,
-    "studentFirstName": "Sofia"
+    "studentUsername": "smartinez"
   },
   {
     "ratingId": "R013",
@@ -101,7 +101,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 4,
-    "studentFirstName": "Daniel"
+    "studentUsername": "dlim"
   },
   {
     "ratingId": "R014",
@@ -109,7 +109,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 3,
-    "studentFirstName": "Ethan"
+    "studentUsername": "ewong"
   },
   {
     "ratingId": "R015",
@@ -117,7 +117,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 5,
-    "studentFirstName": "Lucas"
+    "studentUsername": "lpereira"
   },
   {
     "ratingId": "R016",
@@ -125,7 +125,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 4,
-    "studentFirstName": "Fatima"
+    "studentUsername": "fkhan"
   },
   {
     "ratingId": "R017",
@@ -133,7 +133,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 5,
-    "studentFirstName": "Kenji"
+    "studentUsername": "ktanaka"
   },
   {
     "ratingId": "R018",
@@ -141,7 +141,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 4,
-    "studentFirstName": "Sofia"
+    "studentUsername": "smartinez"
   },
   {
     "ratingId": "R019",
@@ -149,7 +149,7 @@
     "instructorFirstName": "Mei",
     "instructorLastName": "Tan",
     "rating": 4,
-    "studentFirstName": "Kenji"
+    "studentUsername": "ktanaka"
   },
   {
     "ratingId": "R020",
@@ -157,7 +157,7 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 3,
-    "studentFirstName": "Priya"
+    "studentUsername": "pnair"
   },
   {
     "ratingId": "R021",
@@ -165,6 +165,6 @@
     "instructorFirstName": "John",
     "instructorLastName": "Smith",
     "rating": 2,
-    "studentFirstName": "Ethan"
+    "studentUsername": "ewong"
   }
 ]

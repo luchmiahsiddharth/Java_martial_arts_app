@@ -61,7 +61,7 @@ public class RatingsForm extends javax.swing.JFrame {
                             ratingRecord.get("classId").getAsString(),
                             className,
                             ratingRecord.get("rating").getAsString(),
-                            ratingRecord.get("studentFirstName").getAsString()
+                            ratingRecord.get("studentUsername").getAsString()
                         });                       
                     }else{
                         
