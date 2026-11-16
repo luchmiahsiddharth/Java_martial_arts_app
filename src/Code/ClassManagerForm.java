@@ -464,49 +464,49 @@ public class ClassManagerForm extends javax.swing.JFrame {
             if (classfeetxt.getText().equals("Enter class fee...") || classfeetxt.getText().isBlank()||classfeetxt.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "fee field cannot be empty",
                             "Invalid entry", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if (classdatetxt.getText().equals("Enter class date...") || classdatetxt.getText().isBlank()||classdatetxt.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "date field cannot be empty",
-                            "Invalid entry", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if (!checkDate(classdatetxt.getText())){
-                JOptionPane.showMessageDialog(this, "Invalid date entered. Please enter date in format yyyy-MM-dd",
-                        "Invalid entry", JOptionPane.ERROR_MESSAGE);                 
-        }else{           
-            if (classtimetxt.getText().equals("Enter class time...") || classtimetxt.getText().isBlank()||classtimetxt.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "time field cannot be empty",
-                            "Invalid entry", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if (!checkTime(classtimetxt.getText())){
-                JOptionPane.showMessageDialog(this, "Invalid time entered. Please enter date in format HH:mm",
-                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
-        }else{
-                try {
-                    String newId = addClass(classnametxt.getText(), classfeetxt.getText(),
-                            classdatetxt.getText(), classtimetxt.getText());
+            }else{
+                if (classdatetxt.getText().equals("Enter class date...") || classdatetxt.getText().isBlank()||classdatetxt.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "date field cannot be empty",
+                                "Invalid entry", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    if (!checkDate(classdatetxt.getText())){
+                        JOptionPane.showMessageDialog(this, "Invalid date entered. Please enter date in format yyyy-MM-dd",
+                                "Invalid entry", JOptionPane.ERROR_MESSAGE);                 
+                    }else{           
+                        if (classtimetxt.getText().equals("Enter class time...") || classtimetxt.getText().isBlank()||classtimetxt.getText().isEmpty()){
+                            JOptionPane.showMessageDialog(this, "time field cannot be empty",
+                                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
+                        }else{
+                            if (!checkTime(classtimetxt.getText())){
+                                JOptionPane.showMessageDialog(this, "Invalid time entered. Please enter date in format HH:mm",
+                                        "Invalid entry", JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                    try {
+                                        String newId = addClass(classnametxt.getText(), classfeetxt.getText(),
+                                                classdatetxt.getText(), classtimetxt.getText());
 
-                    // same three columns the constructor loads
-                    DefaultTableModel model = (DefaultTableModel) classesTable.getModel();
-                    model.addRow(new Object[]{newId, classnametxt.getText(), classdatetxt.getText()});
+                                        // same three columns the constructor loads
+                                        DefaultTableModel model = (DefaultTableModel) classesTable.getModel();
+                                        model.addRow(new Object[]{newId, classnametxt.getText(), classdatetxt.getText()});
 
-                    // select the new row so the Details panel shows it (-1 = hidden by a search filter)
-                    int viewRow = classesTable.convertRowIndexToView(model.getRowCount() - 1);
-                    if (viewRow >= 0) {
-                        classesTable.setRowSelectionInterval(viewRow, viewRow);
-                        classesTable.scrollRectToVisible(classesTable.getCellRect(viewRow, 0, true));
-                    }
+                                        // select the new row so the Details panel shows it (-1 = hidden by a search filter)
+                                        int viewRow = classesTable.convertRowIndexToView(model.getRowCount() - 1);
+                                        if (viewRow >= 0) {
+                                            classesTable.setRowSelectionInterval(viewRow, viewRow);
+                                            classesTable.scrollRectToVisible(classesTable.getCellRect(viewRow, 0, true));
+                                        }
 
-                    clearbtnActionPerformed(null);   // put the placeholders back
-                    JOptionPane.showMessageDialog(this, "Class " + newId + " created successfully!");
-                } catch (IOException | JsonParseException ex) {
-                    JOptionPane.showMessageDialog(this, "Could not save the class: " + ex.getMessage(),
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-        }
-        }
-        }
-        }
-        }
+                                        clearbtnActionPerformed(null);   // put the placeholders back
+                                        JOptionPane.showMessageDialog(this, "Class " + newId + " created successfully!");
+                                    } catch (IOException | JsonParseException ex) {
+                                        JOptionPane.showMessageDialog(this, "Could not save the class: " + ex.getMessage(),
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }
+                            }
+                       }
+                  }
+             }
         }
     }//GEN-LAST:event_submitclassbtnActionPerformed
     

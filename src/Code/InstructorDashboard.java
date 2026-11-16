@@ -36,6 +36,8 @@ public class InstructorDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        logoutlbl = new javax.swing.JLabel();
+        logoutbtn = new javax.swing.JButton();
         welcomelbl = new javax.swing.JLabel();
         bannerlbl = new javax.swing.JLabel();
         classmanagerbannerlbl = new javax.swing.JLabel();
@@ -56,12 +58,22 @@ public class InstructorDashboard extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(350, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        logoutlbl.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
+        logoutlbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutlbl.setText("logout");
+        getContentPane().add(logoutlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 80, 160, 40));
+
+        logoutbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Monochrome Deep Blue Field.png"))); // NOI18N
+        logoutbtn.addActionListener(this::logoutbtnActionPerformed);
+        getContentPane().add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 80, 160, 40));
+
         welcomelbl.setFont(new java.awt.Font("Segoe UI Semilight", 3, 24)); // NOI18N
         welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
         welcomelbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         welcomelbl.setText("welcome");
         welcomelbl.setToolTipText("");
-        getContentPane().add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 714, 176));
+        getContentPane().add(welcomelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 510, 176));
 
         bannerlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dynamic Martial Arts Abstract Banner.png"))); // NOI18N
         getContentPane().add(bannerlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, -1, 200));
@@ -132,6 +144,16 @@ public class InstructorDashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_classmanagerbtnActionPerformed
 
+    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
+        javax.swing.SwingUtilities.invokeLater(() -> {
+                    for (java.awt.Window window : java.awt.Window.getWindows()) {
+                        window.dispose();
+                    }
+        });
+        String[] args = null;
+        LandingPage.main(args);
+    }//GEN-LAST:event_logoutbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,6 +191,8 @@ public class InstructorDashboard extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
+    private javax.swing.JButton logoutbtn;
+    private javax.swing.JLabel logoutlbl;
     private javax.swing.JLabel ratingsbannerlbl;
     private javax.swing.JButton ratingsbtn;
     private javax.swing.JLabel ratingslbl;
